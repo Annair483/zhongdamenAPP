@@ -64,11 +64,18 @@ class App extends Component {
 
       // 利用生命周期函数来保持当前路由高亮
       // 获取当前路由（hash,history）
-      let hash = window.location.hash;// 可能得到的值：/home,/list,/list/computer
-      hash = hash.split('/')[1];
-
-      this.setState({
-          current:'/'+hash
+      let hash1 = window.location.hash;// 可能得到的值：/home,/list,/list/computer
+        hash1 = hash1.split('/')[1];
+        this.setState({
+            current:'/'+hash1
+      })
+      //监听路由变化 
+      this.props.history.listen(() => {
+        let hash = window.location.hash;
+        hash = hash.split('/')[1];
+        this.setState({
+            current:'/'+hash
+        })
       })
 
   }
@@ -92,8 +99,8 @@ class App extends Component {
               this.state.menu.map(menu=>{
                   return (
                       <li key={menu.path} onClick={()=>{this.handleChange(menu.path)}}>
-                          <Icon type={menu.icon} style={{ fontSize: '2rem' , color: '#999'}}/>
-                          <p>{menu.text}</p>
+                          <Icon type={menu.icon} style={this.state.current===menu.path? { fontSize:'2rem',color: '#fb9756'}:{ fontSize:'2rem',color: '#999'}}/>
+                          <p className={this.state.current===menu.path? 'active':''}>{menu.text}</p>
                           
                       </li>
                   )
