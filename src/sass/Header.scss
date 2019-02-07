@@ -1,0 +1,37 @@
+.swiper-container{
+    border-bottom: .02rem solid rgb(204, 204, 204);
+    width: 7.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: auto;
+    z-index: 1;
+    background: #fff;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    .swiper-wrapper{
+        transition-duration: 0ms;
+        transform: translate3d(0px, 0px, 0px);
+        font-size: .28rem;
+        color: #2c2c2c;
+        display: flex;
+        box-sizing: content-box;
+        overflow: auto;
+        width: 11.76rem;
+        
+        .swiper-slide{
+            width: 1.66rem;
+            padding:.16rem 0;
+            height: 100%;
+            text-align: center;
+            span{
+                display: inline-block
+            }
+            .span-active{
+                border-bottom: 2px solid #ff9957;
+                color: #ff9957;
+            }
+        }
+    }
+}

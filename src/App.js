@@ -10,10 +10,12 @@ import Mine from './components/mine';
 import Cart from './components/cart';
 
 import './sass/Navbar.scss';
-import { Layout ,Icon } from 'antd';
-const {
-  Header, Footer, Sider, Content,
-} = Layout;
+
+import {ReactReduxContext,connect} from 'react-redux';
+// import { Icon } from 'antd';
+// const {
+//   Header, Footer, Sider, Content,
+// } = Layout;
 
 class App extends Component {
   constructor(){
@@ -34,12 +36,12 @@ class App extends Component {
               text:'购物车',
               path:'/cart',
               name:'Cart',
-              icon:'shopping-cart'
+              icon:'cart'
             },{
                 text:'我的',
                 path:'/mine',
                 name:'Mine',
-                icon:'user'
+                icon:'mine'
             },
         ],
         current:'/home'
@@ -49,6 +51,9 @@ class App extends Component {
     // this绑定
     this.handleChange = this.handleChange.bind(this);
   }
+    // 设置静态属性，用户获取Provider提供的store数据
+    static contextType = ReactReduxContext;
+
   handleChange(key){
     //两个问题：1、如何获取路由路径，2、如何获取history对象
     this.setState({
@@ -82,8 +87,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <Header>Header</Header>
-          <Content>
+          {/* <Header>Header</Header>
+          <Content> */}
             <Switch>
                 <Route path="/home" component={Home}/>
                 <Route path="/category" component={Category}/>
@@ -92,14 +97,15 @@ class App extends Component {
                 <Redirect from="/" to="/home"/>
                 {/* <Route path="/" component={Home} exact/> */}
             </Switch>
-          </Content>
+          {/* </Content> */}
           <div className="navbar">
             <ul >
             {
               this.state.menu.map(menu=>{
                   return (
                       <li key={menu.path} onClick={()=>{this.handleChange(menu.path)}}>
-                          <Icon type={menu.icon} style={this.state.current===menu.path? { fontSize:'2rem',color: '#fb9756'}:{ fontSize:'2rem',color: '#999'}}/>
+                          {/* <Icon type={menu.icon} style={this.state.current===menu.path? { fontSize:'.40rem',color: '#fb9756'}:{ fontSize:'.40rem',color: '#999'}}/> */}
+                          <img src={this.state.current===menu.path? require('./img/'+menu.icon+'_now.png') : require('./img/'+menu.icon+'.png')}/>
                           <p className={this.state.current===menu.path? 'active':''}>{menu.text}</p>
                           
                       </li>
@@ -113,10 +119,10 @@ class App extends Component {
   }
 }
 
-App.contextTypes = {
-  router:PropTypes.object
-}
-
+// App.contextTypes = {
+//   router:PropTypes.object
+// }
+// App = connect(mapStateToProps,mapDispatchToProps)(App);
 // 利用withRouter高阶组件包装App组件
 App = withRouter(App);
 

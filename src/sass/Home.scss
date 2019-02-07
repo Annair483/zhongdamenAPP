@@ -1,0 +1,39 @@
+.am-navbar{
+    height: 0.84rem;
+    border-bottom: .02rem solid rgb(204, 204, 204);height: .84rem;overflow:hidden;
+    .am-navbar-left{
+        padding: .36rem;
+    }
+    .am-navbar-title{
+        width: 5.78rem;
+        .top_search{
+            background: #e6e6e6;
+            border: none;
+            height: .54rem;
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            padding: 0;
+            text-align: center;
+            line-height: .54rem;
+            color: #999;
+            font-size: .28rem;
+        }
+    }
+    .am-navbar-right{
+        padding: .2rem .3rem .2rem .3rem;
+        margin: 0;
+        .top_btn{
+            display: block;
+            img{
+                height: .44rem;
+            }
+        }
+
+    }
+}
+.am-navbar-left , .am-navbar-right{
+    align-items: center;
+    flex: 0 0;
+    display: flex;
+}

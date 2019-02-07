@@ -5,10 +5,6 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/cat.ico" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" id="vp">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>中大门</title>
-  </head>
-  <body>
-    <div id="root"></div>
     <script type="text/javascript">
       // // 把尺寸放大N倍（N是window.devicePixelRatio）
       // var wd = document.documentElement.clientWidth*window.devicePixelRatio/10;
@@ -19,23 +15,32 @@
       // var mstr = 'initial-scale='+ scale +', maximum-scale='+ scale +', minimum-scale='+ scale +', user-scalable=no';
       // document.getElementById("vp").content = mstr;
 
-    //   (function (doc, win) {
-    //     var docEl = doc.documentElement,
-    //         resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
-    //         recalc = function () {
-    //             var clientWidth = docEl.clientWidth;
-    //             if (!clientWidth) return;
-    //             if(clientWidth>=750){
-    //                 docEl.style.fontSize = '100px';
-    //             }else{
-    //                 docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
-    //             }
-    //         };
+      (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+            body = document.getElementsByTagName('body'),
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=750){
+                    docEl.style.fontSize = '100px';
+                    console.log(body)
+                    body[0].style.fontSize=docEl.style.fontSize
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    body[0].style.fontSize=docEl.style.fontSize
+                    console.log(body)
+                }
+            };
 
-    //     if (!doc.addEventListener) return;
-    //     win.addEventListener(resizeEvt, recalc, false);
-    //     doc.addEventListener('DOMContentLoaded', recalc, false);
-    // })(document, window);
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
     </script>
+    <title>中大门</title>
+  </head>
+  <body>
+    <div id="root"></div>
   </body>
 </html>
