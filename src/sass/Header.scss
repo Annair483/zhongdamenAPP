@@ -1,8 +1,8 @@
 .swiper-container{
     border-bottom: .02rem solid rgb(204, 204, 204);
-    width: 7.5rem;
-    margin-left: auto;
-    margin-right: auto;
+    // width: 7.5rem;
+    // margin-left: auto;
+    // margin-right: auto;
     position: relative;
     overflow: auto;
     z-index: 1;
@@ -18,12 +18,14 @@
         display: flex;
         box-sizing: content-box;
         overflow: auto;
+        height: .76rem;
+        // display: inline-block;
         width: 11.76rem;
         
         .swiper-slide{
+            // float: left;
             width: 1.66rem;
             padding:.16rem 0;
-            height: 100%;
             text-align: center;
             span{
                 display: inline-block

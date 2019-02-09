@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { NavBar, Icon } from 'antd-mobile';
-import Headnav from './header.js'
+import Headnav from './header.js';
+import Container from './homeContainer.js';
 import '@/sass/Home.scss';
 import {ReactReduxContext,connect} from 'react-redux';
 class Home extends Component{
@@ -32,7 +33,7 @@ class Home extends Component{
                         <a href="javascript:;" className="top_search">商品搜索</a>
                 </NavBar>
                 <Headnav tabs={this.state.tabs} tid={this.props.tid}></Headnav>
-                home
+                <Container tid={this.props.tid}></Container>
             </div>
         )
     }

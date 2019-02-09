@@ -6,7 +6,7 @@ let reducer = function(state=defaultState,action){
         case 'CHANG_TID':
             return {
                 ...state,
-                price:action.payload.tid
+                tid:action.payload
             }
 
         default:

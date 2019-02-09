@@ -1,0 +1,22 @@
+.content_box{
+    border-top: .14rem solid rgba(0,0,0,0.1);
+    .textCenter{
+        height: .72rem;
+        line-height: .72rem;
+        position: relative;
+        color: #757575;
+        font-size: .38rem;
+        text-align: center;
+        background: #fff;
+        .line{
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: .6rem;
+            height: .04rem;
+            background: #707070;
+            margin-left: -0.3rem;
+        }
+    }
+}
