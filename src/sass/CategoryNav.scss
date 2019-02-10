@@ -1,0 +1,16 @@
+.category_swiper{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    .category_wrapper{
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        font-size: .34rem;
+        color: #2c2c2c;
+    }
+}

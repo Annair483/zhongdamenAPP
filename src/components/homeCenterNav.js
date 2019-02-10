@@ -5,7 +5,7 @@ class Centernav extends Component{
         let {centerdata} = this.props;
         console.log(centerdata)
         return(
-            <div className="contentNav">
+            centerdata? (<div className="contentNav">
                 {
                     centerdata.map(val=>(
                         <div className="contentNav_item" key={val.id}>
@@ -16,7 +16,7 @@ class Centernav extends Component{
                         </div>
                     ))
                 }
-            </div>
+            </div>) : <div></div>
         )
     }
 }

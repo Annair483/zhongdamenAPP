@@ -20,3 +20,23 @@
         }
     }
 }
+
+.block{
+    display: block;
+}
+.inblock{
+    display: inline-block;
+}
+.width100{
+    width: 100%;
+}
+.contentBox{
+    overflow: auto;
+    height: 12.2rem;
+    .contentList{
+        margin-bottom: 1.7rem
+    }
+}
+.fff{
+    background: #fff;
+}

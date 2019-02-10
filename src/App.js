@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {Route,Link,NavLink,Switch,Redirect,withRouter} from 'react-router-dom';
-// import logo from './logo.svg';
-// import './App.css';
+import {Route,Switch,Redirect,withRouter} from 'react-router-dom';
+import './App.css';
 import PropTypes from 'prop-types';
 
 import Home from './components/home';
@@ -12,10 +11,6 @@ import Cart from './components/cart';
 import './sass/Navbar.scss';
 
 import {ReactReduxContext,connect} from 'react-redux';
-// import { Icon } from 'antd';
-// const {
-//   Header, Footer, Sider, Content,
-// } = Layout;
 
 class App extends Component {
   constructor(){
@@ -87,8 +82,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          {/* <Header>Header</Header>
-          <Content> */}
             <Switch>
                 <Route path="/home" component={Home}/>
                 <Route path="/category" component={Category}/>
@@ -97,7 +90,6 @@ class App extends Component {
                 <Redirect from="/" to="/home"/>
                 {/* <Route path="/" component={Home} exact/> */}
             </Switch>
-          {/* </Content> */}
           <div className="navbar">
             <ul >
             {

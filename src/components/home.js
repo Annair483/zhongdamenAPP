@@ -22,7 +22,8 @@ class Home extends Component{
     static contextType = ReactReduxContext;
     render(){
         return(
-            <div>
+            <div className="homeBox">
+                <header>
                 <NavBar
                     mode="light"
                     onLeftClick={() => console.log('onLeftClick')}
@@ -33,6 +34,7 @@ class Home extends Component{
                         <a href="javascript:;" className="top_search">商品搜索</a>
                 </NavBar>
                 <Headnav tabs={this.state.tabs} tid={this.props.tid}></Headnav>
+                </header>
                 <Container tid={this.props.tid}></Container>
             </div>
         )

@@ -1,3 +1,6 @@
+.homeBox{
+    overflow: hidden;
+    height: 13.34rem;
 .am-navbar{
     height: 0.84rem;
     border-bottom: .02rem solid rgb(204, 204, 204);height: .84rem;overflow:hidden;
@@ -36,4 +39,16 @@
     align-items: center;
     flex: 0 0;
     display: flex;
+}
+
+head{
+    position: fixed;
+    top: 0;
+    height: 1.2rem;
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    border-bottom: .02rem solid #c0bfc4;
+    z-index: 999;
+}
 }

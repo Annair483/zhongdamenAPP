@@ -5,6 +5,8 @@ import { Carousel,Toast } from 'antd-mobile';
 import Centernav from './homeCenterNav.js';
 import ContainTit from './containTit.js';
 import ContainSwiper from './homeContainSwiper.js';
+import BannerSpe from './bannerSpe.js';
+import CategoryNav from './categoryNav.js';
 import '@/sass/Contain.scss'
 class Container extends Component{
     constructor(){
@@ -71,9 +73,37 @@ class Container extends Component{
         //     bannerData = ['1']
         // }
         // console.log('render:',this.state.homeData)
+        let menu = [],
+            category = [],
+            limit_buy =[],
+            banner_spe=[],
+            goods_special=[],
+            goods_list = [],
+            ulike = []
+        menu = this.state.homeData.filter((item,idx,arr)=>{
+                return (item.type=='module_menu')
+        });
+        category = this.state.homeData.filter((item,idx,arr)=>{
+            return (item.type=='module_category')
+        });
+        limit_buy = this.state.homeData.filter((item,idx,arr)=>{
+            return (item.type=='module_limit_buy')
+        });
+        banner_spe = this.state.homeData.filter((item,idx,arr)=>{
+            return (item.type=='module_banner_special')
+        });
+        goods_special = this.state.homeData.filter((item,idx,arr)=>{
+            return (item.type=='module_goods_special')
+        });
+        goods_list = this.state.homeData.filter((item,idx,arr)=>{
+            return (item.type=='module_goods_list')
+        });
+        ulike= this.state.homeData.filter((item,idx,arr)=>{
+            return (item.type=='module_ulike')
+        });
         return(
             !this.state.haveData ? (<div> {this.loadingToast()}</div>):
-            (<div>
+            (<div className="contentBox">
                 <div className="contentList">
                     <Carousel
                         autoplay={true}
@@ -100,10 +130,32 @@ class Container extends Component{
                                 </a>
                             ))}
                             </Carousel>
-                            <Centernav centerdata={this.state.homeData[1].module.array}></Centernav>
-                            <div className="content_box">
-                                <ContainTit title={this.state.homeData[2].module.title}></ContainTit>
-                                <ContainSwiper contain={this.state.homeData[2].module.array}></ContainSwiper>
+                            <Centernav centerdata={menu[0] ? menu[0].module.array:null}></Centernav>
+                            <div className="content_box fff">
+                                <CategoryNav category={category[0? category[0].module.array: null]}></CategoryNav>
+                            </div>
+                            <div className="content_box fff">
+                                <ContainTit title={limit_buy[0] ?limit_buy[0].module.title : null}></ContainTit>
+                                <ContainSwiper contain={limit_buy[0]? limit_buy[0].module.array : null}></ContainSwiper>
+                            </div>
+                            <div className="content_box fff">
+                                <BannerSpe data={banner_spe[0]? banner_spe[0].module.banner : null}></BannerSpe>
+                                <ContainSwiper contain={banner_spe[0]? banner_spe[0].module.array : null}></ContainSwiper>
+                            </div>
+                            {
+                                goods_special.map(val=>(
+                                    <div className="content_box fff">
+                                        <BannerSpe data={val.module.banner}></BannerSpe>
+                                        <ContainSwiper contain={val.module.array} goods={true}></ContainSwiper>
+                                    </div>
+                                ))
+                            }
+                            <div className="content_box fff">
+                                <ContainTit title={goods_list[0] ?goods_list[0].module.title : null}></ContainTit>
+                                <ContainSwiper contain={goods_list[0]? goods_list[0].module.array : null}></ContainSwiper>
+                            </div>
+                            <div className="content_box fff">
+                                <ContainTit title={ulike[0] ?ulike[0].module.title : null}></ContainTit>
                             </div>
                         </div>
                     </div>
