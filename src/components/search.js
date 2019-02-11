@@ -1,14 +1,13 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-
-class Category extends Component{
+class search extends Component{
     componentWillMount(){
-        this.props.changeNav(true);
+        this.props.changeNav(false);
     }
     render(){
         return(
             <div>
-                分类
+                搜索
             </div>
         )
     }
@@ -32,5 +31,5 @@ let mapDispatchToProps = (dispatch)=>{
         }
     }
 }
-Category = connect(mapStateToProps,mapDispatchToProps)(Category);
-export default Category
+search = connect(mapStateToProps,mapDispatchToProps)(search);
+export default search;

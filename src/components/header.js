@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import { Tabs, WhiteSpace } from 'antd-mobile';
+// import { Tabs, WhiteSpace } from 'antd-mobile';
 import '@/sass/Header.scss';
 import {connect} from 'react-redux';
 
-class Demo extends React.Component {
+class Demo extends Component {
 
   render() {
     const {tabs,tid,changeTid} = this.props
@@ -21,7 +21,6 @@ class Demo extends React.Component {
 
                         )
                     })
-                    
                 }
             </div>
         </div>

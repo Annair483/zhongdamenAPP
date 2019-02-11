@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {ReactReduxContext,connect} from 'react-redux';
+// import {ReactReduxContext,connect} from 'react-redux';
 import axios from 'axios';
 import { Carousel,Toast } from 'antd-mobile';
 import Centernav from './homeCenterNav.js';
@@ -8,7 +8,10 @@ import ContainSwiper from './homeContainSwiper.js';
 import BannerSpe from './bannerSpe.js';
 import CategoryNav from './categoryNav.js';
 import ThreeBanner from './threeBanner.js';
-import '@/sass/Contain.scss'
+import '@/sass/Contain.scss';
+const CancelToken = axios.CancelToken
+let cancel
+
 class Container extends Component{
     constructor(){
         super();
@@ -17,18 +20,20 @@ class Container extends Component{
             haveData:false
         }
         // this.updataNow=this.updataNow.bind(this)
-        this.getDate=this.getDate.bind(this)
-        this.loadingToast=this.loadingToast.bind(this)
+        this.getDate=this.getDate.bind(this);
+        this.loadingToast=this.loadingToast.bind(this);
+        this.cancelRequest=this.cancelRequest.bind(this);
+        // this.getVideoList=this.getVideoList.bind(this);
     }
     componentDidMount(){
         // 获取商品信息
         // console.log(this.props.tid)
-        this.getDate(this.props.tid)
+        this.getList(this.props.tid)
     }
     componentWillReceiveProps(nowProps){
         
         console.log('componentWillReceiveProps:',nowProps)
-        this.getDate(nowProps.tid)
+        this.getList(nowProps.tid)
     }
     // updataNow(tid){
     //     this.setState({
@@ -43,14 +48,38 @@ class Container extends Component{
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             }
         }
-        axios.post('http://www.zhongdamen.com/mobile/index.php?act=indexnew&op=getTwoClass',
+        
+        return axios.post('http://www.zhongdamen.com/mobile/index.php?act=indexnew&op=getTwoClass',
             fd
-        ,config).then(res=>{
+        ,{
+            cancelToken: new CancelToken(function executor (c) {
+              cancel = c
+            })
+        },config)
+    }
+    cancelRequest () {
+        // 第一次执行videoService.cancelRequest()时还未发送getVideoList请求，会报错，添加如下判断
+        if (typeof cancel === 'function') {
+          // 取消请求
+          cancel()
+        }
+    }
+    getList (tid) {
+        // 取消之前的请求
+        this.cancelRequest()
+        // 发送请求
+        this.getDate(tid).then(res=>{
             // console.log(res.data.datas)
             this.setState({
                 homeData:res.data.datas,
                 haveData:true
             })
+        }).catch(err => {
+          if (axios.isCancel(err)) {
+            console.log('Request canceled!')
+          } else {
+            console.log(err.message)
+          }
         })
     }
     loadingToast() {
@@ -66,6 +95,9 @@ class Container extends Component{
                 // this.updataNow(prevProps.tid)
         }
         return false
+    }
+    componentWillUnmount(){
+        cancel()
     }
     render(){
         // console.log(this.state.homeData[0].type)
@@ -83,28 +115,28 @@ class Container extends Component{
             ulike = [],
             banner_3 = []
         menu = this.state.homeData.filter((item,idx,arr)=>{
-                return (item.type=='module_menu')
+                return (item.type==='module_menu')
         });
         category = this.state.homeData.filter((item,idx,arr)=>{
-            return (item.type=='module_category')
+            return (item.type==='module_category')
         });
         limit_buy = this.state.homeData.filter((item,idx,arr)=>{
-            return (item.type=='module_limit_buy')
+            return (item.type==='module_limit_buy')
         });
         banner_spe = this.state.homeData.filter((item,idx,arr)=>{
-            return (item.type=='module_banner_special')
+            return (item.type==='module_banner_special')
         });
         goods_special = this.state.homeData.filter((item,idx,arr)=>{
-            return (item.type=='module_goods_special')
+            return (item.type==='module_goods_special')
         });
         goods_list = this.state.homeData.filter((item,idx,arr)=>{
-            return (item.type=='module_goods_list')
+            return (item.type==='module_goods_list')
         });
         ulike = this.state.homeData.filter((item,idx,arr)=>{
-            return (item.type=='module_ulike')
+            return (item.type==='module_ulike')
         });
         banner_3 =this.state.homeData.filter((item,idx,arr)=>{
-            return (item.type=='module_banner1vs2')
+            return (item.type==='module_banner1vs2')
         });
         return(
             !this.state.haveData ? (<div> {this.loadingToast()}</div>):
@@ -113,8 +145,8 @@ class Container extends Component{
                     <Carousel
                         autoplay={true}
                         infinite={true}
-                        beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                        afterChange={index => console.log('slide to', index)}
+                        // beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
+                        // afterChange={index => console.log('slide to', index)}
                         >
                             {this.state.homeData[0].module.array.map(val => (
                                 <a
@@ -152,8 +184,8 @@ class Container extends Component{
                                 <ContainSwiper contain={banner_spe[0]? banner_spe[0].module.array : null}></ContainSwiper>
                             </div>
                             {
-                                goods_special.map(val=>(
-                                    <div className="content_box fff">
+                                goods_special.map((val,idx)=>(
+                                    <div className="content_box fff" key={idx}>
                                         <BannerSpe data={val.module.banner}></BannerSpe>
                                         <ContainSwiper contain={val.module.array} goods={true}></ContainSwiper>
                                     </div>

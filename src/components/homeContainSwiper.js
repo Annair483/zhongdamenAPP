@@ -9,8 +9,8 @@ class Swiper extends Component{
             (<div className="swiper_contain">
                 <div className="swiper_wrapper">
                     {
-                        contain.map(val=>(
-                            <div className="swiper_slide" key={val.goods_id}>
+                        contain.map((val,idx)=>(
+                            <div className="swiper_slide" key={idx}>
                                 <a href="javascript:;">
                                     {/* <div className="slide_imgbox"><img src={val.pic_url} /></div> */}
                                     <div className="slide_imgbox"><img src={val.goods_image_url || val.pic_url} /></div>

@@ -16,7 +16,7 @@ class ThreeBanner extends Component{
                 <div style={{flex:'1'}}>
                     <div key={arr1[0].special_id} className="banner_3_imgbox" style={{paddingRight:'0.1rem',height:'2.4rem'}}>
                         <a href="javascript:;" className="block">
-                            <img src={arr1[0].pic_url} className="blcok width100" style={{height: '4.2rem'}}/>
+                            <img alt='' src={arr1[0].pic_url} className="blcok width100" style={{height: '4.2rem'}}/>
                         </a>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ class ThreeBanner extends Component{
                         arr2.map(val=>(
                             <div className="banner_3_imgbox" style={{paddingRight:'0.1rem',height:'2.4rem'}} key={val.special_id}>
                                 <a href="javascript:;" className="block">
-                                    <img src={val.pic_url} className="blcok width100" style={{height: '2rem'}}/>
+                                    <img alt='' src={val.pic_url} className="blcok width100" style={{height: '2rem'}}/>
                                 </a>
                             </div>
                         ))

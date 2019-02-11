@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
 import Headnav from './header.js';
 import Container from './homeContainer.js';
 import '@/sass/Home.scss';
@@ -20,20 +20,34 @@ class Home extends Component{
         }
     }
     static contextType = ReactReduxContext;
+    componentWillMount(){
+        this.props.changeNav(true);
+    }
+    handleChange(key){
+        //两个问题：1、如何获取路由路径，2、如何获取history对象
+        this.setState({
+            current:key
+        });
+    
+        console.log(this.props.history);
+    
+        // 
+        this.props.history.push(key)
+    }
     render(){
         return(
             <div className="homeBox">
                 <header>
-                <NavBar
-                    mode="light"
-                    onLeftClick={() => console.log('onLeftClick')}
-                    rightContent={[
-                        <a href="jacascript:;" className="top_btn"><img src={require("../img/home_topbtn.png")} /></a>
-                    ]}
-                    >
-                        <a href="javascript:;" className="top_search">商品搜索</a>
-                </NavBar>
-                <Headnav tabs={this.state.tabs} tid={this.props.tid}></Headnav>
+                    <NavBar
+                        mode="light"
+                        onLeftClick={() => console.log('onLeftClick')}
+                        rightContent={[
+                            <a href="jacascript:;" className="top_btn"><img alt='' src={require("../img/home_topbtn.png")} /></a>
+                        ]}
+                        >
+                            <a href="javascript:;" className="top_search" onClick={()=>{this.handleChange('/search')}}>商品搜索</a>
+                    </NavBar>
+                    <Headnav tabs={this.state.tabs} tid={this.props.tid}></Headnav>
                 </header>
                 <Container tid={this.props.tid}></Container>
             </div>
@@ -46,18 +60,20 @@ let mapStateToProps = (state)=>{
     return {
         // 把goodslist属性映射到App的props中
         tid:state.home.tid,
+        navstate:state.home.navstate
     }
 }
-// let mapDispatchToProps = (dispatch)=>{
-//     return {
-//         addcart:(goods)=>{
-//             dispatch({
-//                 type:'CHANG_TID',
-//                 payload:goods
-//             })
-//         }
-//     }
-// }
+let mapDispatchToProps = (dispatch)=>{
+    // console.log('mapDispatchToProps:',dispatch)
+    return {
+        changeNav(tid){
+            dispatch({
+                type:'CHANGE_NAV',
+                payload:tid
+            })
+        }
+    }
+}
 
-Home = connect(mapStateToProps)(Home);
+Home = connect(mapStateToProps,mapDispatchToProps)(Home);
 export default Home;

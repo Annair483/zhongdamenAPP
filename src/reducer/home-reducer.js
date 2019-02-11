@@ -1,5 +1,6 @@
 let defaultState = {
-    tid:1
+    tid:1,
+    navstate:true
 }
 let reducer = function(state=defaultState,action){
     switch(action.type){
@@ -7,6 +8,11 @@ let reducer = function(state=defaultState,action){
             return {
                 ...state,
                 tid:action.payload
+            }
+        case 'CHANGE_NAV':
+            return {
+                ...state,
+                navstate:action.payload
             }
 
         default:

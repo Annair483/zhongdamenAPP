@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import {Route,Switch,Redirect,withRouter} from 'react-router-dom';
 import './App.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Home from './components/home';
 import Category from './components/category';
 import Mine from './components/mine';
 import Cart from './components/cart';
+import Search from './components/search';
 
 import './sass/Navbar.scss';
 
-import {ReactReduxContext,connect} from 'react-redux';
+import {ReactReduxContext , connect} from 'react-redux';
 
 class App extends Component {
   constructor(){
@@ -87,17 +88,18 @@ class App extends Component {
                 <Route path="/category" component={Category}/>
                 <Route path="/mine" component={Mine}/>
                 <Route path="/cart" component={Cart}/>
+                <Route path="/search" component={Search}/>
                 <Redirect from="/" to="/home"/>
                 {/* <Route path="/" component={Home} exact/> */}
             </Switch>
-          <div className="navbar">
+          {this.props.navstate? (<div className="navbar" >
             <ul >
             {
               this.state.menu.map(menu=>{
                   return (
                       <li key={menu.path} onClick={()=>{this.handleChange(menu.path)}}>
                           {/* <Icon type={menu.icon} style={this.state.current===menu.path? { fontSize:'.40rem',color: '#fb9756'}:{ fontSize:'.40rem',color: '#999'}}/> */}
-                          <img src={this.state.current===menu.path? require('./img/'+menu.icon+'_now.png') : require('./img/'+menu.icon+'.png')}/>
+                          <img alt='' src={this.state.current===menu.path? require('./img/'+menu.icon+'_now.png') : require('./img/'+menu.icon+'.png')}/>
                           <p className={this.state.current===menu.path? 'active':''}>{menu.text}</p>
                           
                       </li>
@@ -105,16 +107,20 @@ class App extends Component {
               })
             }
             </ul>
-          </div>
+          </div>):<div></div>}
       </div>
     );
   }
 }
-
-// App.contextTypes = {
-//   router:PropTypes.object
-// }
-// App = connect(mapStateToProps,mapDispatchToProps)(App);
+let mapStateToProps = (state)=>{
+    console.log('mapStateToProps:',state)
+    return {
+        // 把goodslist属性映射到App的props中
+        tid:state.home.tid,
+        navstate:state.home.navstate
+    }
+}
+App = connect(mapStateToProps)(App);
 // 利用withRouter高阶组件包装App组件
 App = withRouter(App);
 

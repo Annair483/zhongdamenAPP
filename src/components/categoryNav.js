@@ -16,8 +16,8 @@ class CategoryNav extends Component{
                 <div className="category_wrapper">
                     <div className="category_slider">
                         {
-                            result.map(val=>(
-                                <div className="category_flex">
+                            result.map((val,idx)=>(
+                                <div className="category_flex" key={idx}>
                                     {val.map(item=>(
                                         <div className="category_item" key={item.gc_id}>
                                             <a href="javascript:;" className="block">
