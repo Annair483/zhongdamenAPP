@@ -7,6 +7,7 @@ import ContainTit from './containTit.js';
 import ContainSwiper from './homeContainSwiper.js';
 import BannerSpe from './bannerSpe.js';
 import CategoryNav from './categoryNav.js';
+import ThreeBanner from './threeBanner.js';
 import '@/sass/Contain.scss'
 class Container extends Component{
     constructor(){
@@ -79,7 +80,8 @@ class Container extends Component{
             banner_spe=[],
             goods_special=[],
             goods_list = [],
-            ulike = []
+            ulike = [],
+            banner_3 = []
         menu = this.state.homeData.filter((item,idx,arr)=>{
                 return (item.type=='module_menu')
         });
@@ -98,8 +100,11 @@ class Container extends Component{
         goods_list = this.state.homeData.filter((item,idx,arr)=>{
             return (item.type=='module_goods_list')
         });
-        ulike= this.state.homeData.filter((item,idx,arr)=>{
+        ulike = this.state.homeData.filter((item,idx,arr)=>{
             return (item.type=='module_ulike')
+        });
+        banner_3 =this.state.homeData.filter((item,idx,arr)=>{
+            return (item.type=='module_banner1vs2')
         });
         return(
             !this.state.haveData ? (<div> {this.loadingToast()}</div>):
@@ -132,7 +137,11 @@ class Container extends Component{
                             </Carousel>
                             <Centernav centerdata={menu[0] ? menu[0].module.array:null}></Centernav>
                             <div className="content_box fff">
-                                <CategoryNav category={category[0? category[0].module.array: null]}></CategoryNav>
+                                <CategoryNav category={category[0]? category[0].module.array: null}></CategoryNav>
+                            </div>
+                            <div className="content_box fff">
+                                <ContainTit title={banner_3[0] ?banner_3[0].module.title : null}></ContainTit>
+                                <ThreeBanner banner_3={banner_3[0]? banner_3[0].module.array: null}></ThreeBanner>
                             </div>
                             <div className="content_box fff">
                                 <ContainTit title={limit_buy[0] ?limit_buy[0].module.title : null}></ContainTit>

@@ -3,7 +3,7 @@ import '@/sass/ContentNav.scss'
 class Centernav extends Component{
     render(){
         let {centerdata} = this.props;
-        console.log(centerdata)
+        // console.log(centerdata)
         return(
             centerdata? (<div className="contentNav">
                 {

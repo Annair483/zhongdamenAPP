@@ -4,6 +4,7 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    padding: .24rem 0;
     .category_wrapper{
         display: flex;
         position: relative;
@@ -12,5 +13,19 @@
         z-index: 1;
         font-size: .34rem;
         color: #2c2c2c;
+        .category_slider{
+            width: 7.5rem;
+            height: 100%;
+            position: relative;
+            .category_flex{
+                display: -webkit-flex;
+                display: flex;
+                .category_item{
+                    font-size: .28rem;
+                    color: #2c2c2c;
+                    flex:1;
+                }
+            }
+        }
     }
 }
