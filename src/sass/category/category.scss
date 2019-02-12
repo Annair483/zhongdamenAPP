@@ -1,0 +1,125 @@
+header{
+    position: fixed;
+    z-index: 8;
+    top: 0;
+    left: 0;
+    right: 0;
+    // bottom: auto;
+    border-bottom: solid .03rem #EEE;
+}
+.categoty_main{
+    height: 100%;
+    height: 12.54rem;
+    background: #fff;
+    display: flex;
+    .categoty_left{
+        margin-top: .4rem;
+        // width: 1.94rem;
+        width: 20%;
+        height: 100%;
+        display: block;
+        // float: left;
+        position: absolute;
+        z-index: 1;
+        top: .48rem;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        .categoty_list{
+            width: 1.24rem;
+            // position: absolute;
+            .categoty_listItem{
+                width: 1.24rem;
+                height: .48rem;
+                margin-top: .44rem;
+                a{
+                    display: block;
+                    width: 1.24rem;
+                    height: .48rem; 
+                    .categoty_leftName{
+                        padding: 0 .22rem;
+                        font-size: .28rem;
+                        line-height: .4rem;
+                        color: #2c2c2c;
+                        text-align: center;
+                        width: 100%;
+                        height: .4rem;
+                        padding-bottom: .11rem;
+                        z-index: 99;
+                    }
+                }
+            }
+            .select{
+                .categoty_leftName{
+                    color: #ED5564!important;
+                    // padding-bottom: 0.2rem;
+                    border-left: solid .04rem #F76005;
+                    padding: 0 .22rem!important;
+                }
+            }
+        }
+    }
+    .categoty_right{
+        margin-top: .4rem;        
+        position: absolute;
+        z-index: 1;
+        top: .70rem;
+        right: 0;
+        // width: 5.82rem;
+        width: 80%; 
+        .categoty_right_top{
+            margin: .35rem;
+            height: 5.16rem;
+            background-color: #ddd;
+            height: 1.76rem;
+            img{
+                min-height: 1.76rem;
+                width: 100%;
+            }
+        }
+        #categoty_right{
+            overflow: auto;
+            height: 7.48rem;
+            margin-bottom: 1.32rem;
+            .brands_recommend{
+                margin: 0 .33rem;
+                .title{
+                    font-size: .26rem;
+                    color: #2c2c2c;
+                    text-align: center;
+                    span{
+                        text-decoration: line-through;
+                    }
+                }
+                dd{
+                    background-color: #FFF;
+                    vertical-align: top;
+                    display: inline-block;
+                    height: 1.9rem;
+                    a{
+                        div{
+                            width: 1.32rem;
+                            height: 1.32rem;
+                            border-radius: 50%;
+                            border: .02rem solid #ddd;
+                            margin: auto;
+                            overflow: hidden;
+                            background-size: 100% auto;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                        }
+                        p{
+                            font-size: .26rem;
+                            line-height: .26rem;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            text-align: center;
+                            overflow: hidden;
+                            color: #2c2c2c;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
