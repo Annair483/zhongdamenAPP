@@ -17,13 +17,15 @@ class Category extends Component{
         this.state={
             tuijian:[],
             list:[],
-            current:'1'
+            current:'1',
+            imgUrl:''
         }
         this.getTuijian=this.getTuijian.bind(this);
         this.getList=this.getList.bind(this);
         this.getData=this.getData.bind(this);
         this.handleChange=this.handleChange.bind(this);
         this.handleClick=this.handleClick.bind(this);
+        this.goback=this.goback.bind(this);
     }
     componentDidMount(){
         this.props.changeNav(true);
@@ -69,15 +71,19 @@ class Category extends Component{
         }
     }
     getData({act,op,gc_id}){
-        let _this = this
+        let _this = this,
+            obj ={},
+            arr =[]
         axios.all([this.getTuijian(), this.getList({act,op,gc_id})])
         .then(axios.spread(function (acct, perms) {
+            obj.child=acct.data.datas.class_list;
+            arr.push(obj)
             // 两个请求现在都执行完成
             _this.setState({
-                tuijian:acct.data.datas.class_list,
+                tuijian:arr,
                 list:perms.data.datas.class_list
             })
-            console.log(_this.state.tuijian,_this.state.list)
+            // console.log(_this.state.tuijian,_this.state.list)
         }));
     }
     componentWillUnmount(){
@@ -88,16 +94,48 @@ class Category extends Component{
         this.setState({
             current:id
         })
+        if(id==='1'){
+            let obj ={},
+                arr =[]
+            this.getTuijian().then(res=>{
+                obj.child=res.data.datas.class_list;
+                arr.push(obj)
+                this.setState({
+                    tuijian:arr,
+                    imgUrl:''
+                })
+            }).catch(err => {
+                console.log(err)
+            })
+        }else{
+            let url = [];
+            url = this.state.list.filter((item,idx,arr)=>{
+                return (item.gc_id===id)
+            });     
+            this.getList({act:'goods_class',op:'get_child_all',gc_id:id}).then(res=>{
+                // console.log(res.data.datas.class_list)
+                this.setState({
+                    tuijian:res.data.datas.class_list,
+                    imgUrl:url[0].gc_image_url
+                })
+            }).catch(err => {
+              console.log(err)
+            })
+            // console.log( this.getList({act:'goods_class',op:'get_child_all',gc_id:id}))
+        }
     }
     handleClick(key){
-        // this.props.history.push(key)
-        console.log(this.props)
+        this.props.history.push(key)
+        // console.log(key)
+    }
+    goback(){
+        this.props.history.go(-1)
     }
     render(){
         return(
             <div>
                 <header>
-                    <Search category={this.handleClick()}></Search>
+                    <Search category={(key)=>{this.handleClick(key)}} goback={()=>{this.goback()}}></Search>
                 </header>
                 <div className="categoty_main">
                     <div className="categoty_left">
@@ -114,7 +152,7 @@ class Category extends Component{
                             }
                         </ul>
                     </div>
-                    <CategoryRight data={this.state.tuijian}></CategoryRight>
+                    <CategoryRight data={this.state.tuijian} img={this.state.imgUrl}></CategoryRight>
                 </div>
             </div>
         )

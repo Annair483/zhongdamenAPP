@@ -1,12 +1,23 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import Top from './categoryMoudle/search'
 class search extends Component{
+    constructor(){
+        super();
+        this.goback=this.goback.bind(this);
+    }
     componentWillMount(){
         this.props.changeNav(false);
+    }
+    goback(){
+        this.props.history.go(-1)
     }
     render(){
         return(
             <div>
+                <header>
+                    <Top goback={()=>{this.goback()}}></Top>
+                </header>
                 搜索
             </div>
         )
