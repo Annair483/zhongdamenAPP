@@ -1,8 +1,16 @@
 import React,{Component} from 'react';
 class Category extends Component{
+    constructor(){
+        super();
+        this.godetail=this.godetail.bind(this);
+    }
+    godetail(name,id){
+        this.props.detail(name,id);
+        // console.log(inpVal);
+    }
     render(){
         let {data,img} =this.props;
-        console.log(data)
+        // console.log(data)
         return(
             <div className="categoty_right">
                 <div className="categoty_right_top">
@@ -15,7 +23,7 @@ class Category extends Component{
                         </div>
                         {
                             item.child.map(val=>(
-                                <dd key={val.gc_id} style={{margin: '0.22rem 0 0 0',width: '33.3%'}}>
+                                <dd onClick={()=>{this.godetail(val.gc_name,val.gc_id)}} key={val.gc_id} style={{margin: '0.22rem 0 0 0',width: '33.3%'}}>
                                     <a href="javascript:;">
                                         <div style={{backgroundImage:'url('+val.gc_image_url+')'}}></div>
                                         <p>{val.gc_name}</p>

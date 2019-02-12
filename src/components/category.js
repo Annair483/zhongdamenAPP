@@ -131,6 +131,10 @@ class Category extends Component{
     goback(){
         this.props.history.go(-1)
     }
+    godetail(name,id){
+        console.log(name,id)
+        this.props.history.push({ pathname: '/list/'+name+'/'+id})
+    }
     render(){
         return(
             <div>
@@ -152,7 +156,7 @@ class Category extends Component{
                             }
                         </ul>
                     </div>
-                    <CategoryRight data={this.state.tuijian} img={this.state.imgUrl}></CategoryRight>
+                    <CategoryRight detail={(name,id)=>{this.godetail(name,id)}} data={this.state.tuijian} img={this.state.imgUrl}></CategoryRight>
                 </div>
             </div>
         )

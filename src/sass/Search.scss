@@ -1,0 +1,55 @@
+.searchBox{
+    header{
+        flex: 1;
+    }
+    #searchBox{
+        flex: 1;
+        margin-top: 1.12rem;
+        background: #fff;
+        .latesearch,.hotsearch{
+            padding: .352rem .33rem 0 .33rem;
+            .ddtit{
+                color: #2c2c2c;
+                font-size: .26rem;
+                position: relative;
+                line-height: .40rem;
+                margin-bottom: .176rem;
+                i{
+                    padding: .46rem .44rem 0 0;
+                    background: url('../img/shanchu@2x.png') 0 0;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+            }
+            .ddcontain{
+                ul{
+                    // display: flex;
+                    font-size: 0;
+                    li{
+                        margin: 0 .22rem .33rem 0;
+                        display: inline-block;
+                        background-color: #FFF;
+                        border: solid .02rem #EEE;
+                        line-height: 0;
+                        a{
+                            height: .46rem;
+                            border: .01rem solid #2c2c2c;
+                            font-size: .26rem;
+                            border-radius: .04rem;
+                            color: #2c2c2c;
+                            text-align: center;
+                            line-height: .46rem;
+                            display: block;
+                            padding: .088rem .22rem;
+                            // white-space:nowrap; 
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+body{
+    background: #fff;
+}

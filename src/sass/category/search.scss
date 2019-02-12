@@ -3,14 +3,14 @@
     height: 1.12rem;
 
     .am-navbar {
+        z-index: -2;
         height: 1.12rem;
         .am-navbar-left{
             width: .86rem;
             flex:none;
             padding-left: .1rem;
         }
-        .am-navbar-title{
-            flex:none;
+        .navbar_tit{
             position: relative;
             display: block;
             width: 5.52rem;
@@ -20,6 +20,12 @@
             // margin: 0.275rem 2.5rem 0 2rem;
             background-color: #FFF;
             text-align: left;
+            // .navbar_right{
+            //     position:absolute;
+            //     right:-0.8rem;
+            //     top:0.17rem;
+            //     width: 30px;
+            // }
             .icon{
                 float: left;
                 vertical-align: top;
@@ -45,10 +51,18 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                &::-webkit-input-placeholder {
+                    color: #DEDEDE;
+                    font-size: 16px;
+                }
             }
         }
         .am-navbar-right{
-            margin-left: 15px;
+            // margin-left: 15px;
+            z-index: 9999;
+            float: right;
+            width: 0;
+            
         }
     }
 }

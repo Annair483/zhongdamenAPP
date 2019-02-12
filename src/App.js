@@ -8,6 +8,7 @@ import Category from './components/category';
 import Mine from './components/mine';
 import Cart from './components/cart';
 import Search from './components/search';
+import GoodsList from './components/goodslist/goodslist';
 
 import './sass/Navbar.scss';
 
@@ -89,6 +90,7 @@ class App extends Component {
                 <Route path="/mine" component={Mine}/>
                 <Route path="/cart" component={Cart}/>
                 <Route path="/search" component={Search}/>
+                <Route path="/list/:keyword/:gc_id" component={GoodsList}/>
                 <Redirect from="/" to="/home"/>
                 {/* <Route path="/" component={Home} exact/> */}
             </Switch>
