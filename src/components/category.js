@@ -132,8 +132,11 @@ class Category extends Component{
         this.props.history.go(-1)
     }
     godetail(name,id){
-        console.log(name,id)
-        this.props.history.push({ pathname: '/list/'+name+'/'+id})
+        // console.log(name,id)
+        // console.log(name.replace('/','='))
+        let newList= name.replace(/[^\u4E00-\u9FA5]/g,'=')
+        console.log(newList)
+        this.props.history.push({ pathname: '/list/'+newList+'/'+id})
     }
     render(){
         return(
