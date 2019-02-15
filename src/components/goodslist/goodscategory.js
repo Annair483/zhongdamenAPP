@@ -11,6 +11,7 @@ class goodsnav extends Component{
             ]
         }
         this.renderI=this.renderI.bind(this);
+        this.handleClick=this.handleClick.bind(this);
     }
     renderI(val){
         return(
@@ -18,19 +19,23 @@ class goodsnav extends Component{
         )
     }
     handleClick(id){
-        let now = [];
-        for( let i of this.state.nav){
-            if(i.id==id){
-                i.active=!i.active;
-            }
-            now.push(i);
+        // let now = [];
+        // for( let i of this.state.nav){
+        //     if(i.id==id){
+        //         i.active=!i.active;
+        //     }
+        //     now.push(i);
+        // }
+        // this.setState({
+        //     nav:now
+        // })
+        this.props.click(id)
+        if(id=='3'){
+            this.props.navstatus();
         }
-        this.setState({
-            nav:now
-        })
     }
     render(){
-        let {nav,active} = this.state;
+        let {nav} = this.props;
         return(
             <div className="flex_row">
                     {nav.map(val=>(

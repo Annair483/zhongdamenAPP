@@ -27,6 +27,7 @@ class goodsnav extends Component{
             this.setState({
                 current:key
             })
+            
         }else{
             let now = '';
             if(this.state.order=='1'){

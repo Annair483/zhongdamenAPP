@@ -34,7 +34,6 @@ class search extends Component{
                         <Icon key="1" type="ellipsis" style={{ color: '#707070' }} onClick={()=>{this.search()}}/> 
                         : <p onClick={()=>{this.search()}} style={{zIndex:'2',marginLeft:'-0.6rem',color:'#333',fontSize:'0.3rem',whiteSpace:'nowrap',padding:'1rem'}}>&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     }
-                    
                     >
                     <div className="navbar_tit">
                         {category? null:(<p onClick={()=>{this.search()}} style={{width:'0.5rem',zIndex:'2',marginLeft:'-0.6rem',color:'#333',fontSize:'0.3rem',whiteSpace:'nowrap',position:'absolute',right:'-0.7rem',top:'0.17rem'}}>搜索</p>)}

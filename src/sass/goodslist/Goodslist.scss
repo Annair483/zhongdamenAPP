@@ -12,3 +12,60 @@ header{
     left: 0;
     right: 0;
 }
+.shaixuan_box{
+    position: fixed;
+    top: 2.64rem;
+    right: 0;
+    left: 0;
+    z-index: 9;
+    .shaixuan_content{
+        background: #FFFFFF;
+        font-size: .3rem;
+        color: #2C2C2C;
+        padding: 0 .33rem .22rem .33rem;
+        .content_box{
+            width: 100%;
+            height: auto;
+            margin: auto;
+            display: flex;
+            border:none;
+            .content_select{
+                flex: 1;
+                padding: .33rem 0;
+                width: 50%;
+                border-bottom: .02rem solid #FFFFFF;
+                font-size: .308rem;
+                &.active{
+                    border-bottom: .02rem solid #f76005;
+                    background-image: url(../../img/btn_duihao@2x.png);
+                    background-size: auto auto;
+                    background-repeat: no-repeat;
+                    background-position: right center;
+                }
+            }
+        }
+    }
+    .select{
+        border-top: solid .02rem #EEE;
+        border-bottom: solid .02rem #EEE;
+        display: flex;
+        .select_flex{
+            flex: 1;
+            height: .96rem;
+            line-height: .96rem;
+            text-align: center;
+            width: 100%;
+            font-size: 0.7rem;
+            display: block;
+            font-size: .308rem;
+            &.reset{
+                background: #FFFFFF;
+                color: #2C2C2C;
+            }
+            &.affirm{
+                background: #f76005;
+                color: #FFFFFF;
+            }
+        }
+    }
+}
