@@ -4,6 +4,10 @@
 
 中大门跨境电商app，基于Nodejs+MySQL+git+sass+Ant Design+React+Redux+Webpack开发的单页面应用app
 
+## 项目演示地址
+
+http://120.78.4.239:3050/#/home
+
 ## `项目架构`
 
 
